@@ -1608,7 +1608,7 @@
 
         try {
             // Always fetch fresh — no in-memory cache — so newly uploaded files appear immediately.
-            const response = await fetch('https://api.github.com/repos/ucmike-calif/2026-lacrosse-soundboard2/contents/audio/playlist', {
+            const response = await fetch('https://api.github.com/repos/ucmike-calif/2026-lacrosse-soundboard3/contents/audio/playlist', {
                 cache: 'no-store'
             });
             if (!response.ok) throw new Error("API Limit or Error");
@@ -1741,13 +1741,13 @@
 
       if (editingItemType === 'player') {
         const f = getPredictedFileNames(top, bot, 'player');
-        box.innerHTML = `Please make sure your audio files are named:<br>• <strong>${f.song}</strong> (place in the <strong>/audio/songs/</strong> folder)<br>• <strong>${f.goal}</strong> (place in the <strong>/audio/goals/</strong> folder)<br>in the <strong>2026-lacrosse-soundboard2</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
+        box.innerHTML = `Please make sure your audio files are named:<br>• <strong>${f.song}</strong> (place in the <strong>/audio/songs/</strong> folder)<br>• <strong>${f.goal}</strong> (place in the <strong>/audio/goals/</strong> folder)<br>in the <strong>2026-lacrosse-soundboard3</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
       } else if (editingItemType === 'extra') {
         const f = getPredictedFileNames(top, bot, 'extra');
-        box.innerHTML = `Please make sure your audio files are named:<br>• <strong>${f.song}</strong> (place in the <strong>/audio/songs/</strong> folder)<br>• <strong>${f.goal}</strong> (place in the <strong>/audio/goals/</strong> folder)<br>in the <strong>2026-lacrosse-soundboard2</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
+        box.innerHTML = `Please make sure your audio files are named:<br>• <strong>${f.song}</strong> (place in the <strong>/audio/songs/</strong> folder)<br>• <strong>${f.goal}</strong> (place in the <strong>/audio/goals/</strong> folder)<br>in the <strong>2026-lacrosse-soundboard3</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
       } else {
         const f = getPredictedFileNames(top, bot, 'playlist');
-        box.innerHTML = `Please ensure your audio file is named exactly <strong>${f.file}</strong> and placed in the <strong>/audio/playlist/</strong> folder in the <strong>2026-lacrosse-soundboard2</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
+        box.innerHTML = `Please ensure your audio file is named exactly <strong>${f.file}</strong> and placed in the <strong>/audio/playlist/</strong> folder in the <strong>2026-lacrosse-soundboard3</strong> repository on <strong>ucmike-calif</strong>'s GitHub.`;
       }
     }
 
@@ -2150,7 +2150,7 @@
         else if (currentMode === Mode.GOAL) folderPath = '/audio/goals/';
         
         // This triggers the new explicit modal you requested!
-        document.getElementById('errorMessageText').innerHTML = `Please add your audio file into the <strong>${folderPath}</strong> folder in the <strong>2026-lacrosse-soundboard2</strong> repository on <strong>ucmike-calif</strong>'s GitHub and ensure it is named exactly:<br><br><div style="font-family:monospace; background:#f0f0f0; padding:10px; border-radius:8px; font-size: 15px; font-weight: bold; border: 1px solid #ddd; word-break: break-all;">${decodedName}</div><br><span style="font-size:13px; color:#555;"><i>Tip: GitHub is strictly case-sensitive. <b>.MP3</b> is different from <b>.mp3</b>!</i></span><br><br><div style="text-align:center;"><a href="${fullUrl}" target="_blank" style="color: var(--purple); font-weight: bold; text-decoration: underline; font-size: 15px;">Tap here to test the raw link</a><br><span style="font-size:12px; color:#666;">(If this opens a "404 Not Found" page, the file is definitely missing or named incorrectly on GitHub)</span></div>`;
+        document.getElementById('errorMessageText').innerHTML = `Please add your audio file into the <strong>${folderPath}</strong> folder in the <strong>2026-lacrosse-soundboard3</strong> repository on <strong>ucmike-calif</strong>'s GitHub and ensure it is named exactly:<br><br><div style="font-family:monospace; background:#f0f0f0; padding:10px; border-radius:8px; font-size: 15px; font-weight: bold; border: 1px solid #ddd; word-break: break-all;">${decodedName}</div><br><span style="font-size:13px; color:#555;"><i>Tip: GitHub is strictly case-sensitive. <b>.MP3</b> is different from <b>.mp3</b>!</i></span><br><br><div style="text-align:center;"><a href="${fullUrl}" target="_blank" style="color: var(--purple); font-weight: bold; text-decoration: underline; font-size: 15px;">Tap here to test the raw link</a><br><span style="font-size:12px; color:#666;">(If this opens a "404 Not Found" page, the file is definitely missing or named incorrectly on GitHub)</span></div>`;
         document.getElementById('errorModalOverlay').style.display = 'flex';
         
         if (activeTracks.has(buttonEl) && activeTracks.get(buttonEl).audio === audio) {
