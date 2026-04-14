@@ -1607,13 +1607,12 @@
         listDiv.style.display = 'block';
 
         try {
-            if (!window.cachedGithubFiles) {
-                const response = await fetch('https://api.github.com/repos/ucmike-calif/2026-lacrosse-soundboard2/contents/audio/playlist');
-                if (!response.ok) throw new Error("API Limit or Error");
-                window.cachedGithubFiles = await response.json();
-            }
-            
-            const data = window.cachedGithubFiles;
+            // Always fetch fresh — no in-memory cache — so newly uploaded files appear immediately.
+            const response = await fetch('https://api.github.com/repos/ucmike-calif/2026-lacrosse-soundboard2/contents/audio/playlist', {
+                cache: 'no-store'
+            });
+            if (!response.ok) throw new Error("API Limit or Error");
+            const data = await response.json();
             listDiv.innerHTML = '';
             
             // Allow any standard audio extension
