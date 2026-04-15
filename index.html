@@ -802,501 +802,384 @@
     const FADE_TOTAL_SEC = 4.0; 
     const FADE_HOLD_SEC  = 1.0; 
 
-    const defaultAdminPinHash = "MTAzMF9sYXgyMDI2";
-    const defaultMissingSongs = [2,4,5,7,8,10,12,13,15,25,30];
-    const defaultLockedButtons = ["playlist_2","playlist_7","playlist_14","playlist_19","pl_The_Good__The_Bad_and_The_Ugly_Theme_U","pl_Happy_Trails_Roy_Rogers","pl_Timber_Old_Town_Road_Chrispy_Mashups","pl_Bonanza_U","pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels"];
-    const defaultCardColors = {
-      "playlist_2": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "playlist_7": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "playlist_14": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "playlist_19": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "pl_Bonanza_U": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "pl_The_Good__The_Bad_and_The_Ugly_Theme_U": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "pl_Happy_Trails_Roy_Rogers": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "pl_Timber_Old_Town_Road_Chrispy_Mashups": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      },
-      "pl_Made_for_Lovin__You_Boogie_Wonderland_BillMcClintockMashups": {
-        "bg": "#f3e5f5",
-        "border": "#ce93d8"
-      },
-      "pl_7_Nation_Teen_Spirit_DJ_BootOX": {
-        "bg": "#f3e5f5",
-        "border": "#ce93d8"
-      },
-      "pl_Bust_a_Move_FWIW_BillMcClintockMashups": {
-        "bg": "#f3e5f5",
-        "border": "#ce93d8"
-      },
-      "pl_Lonely_Heart_Let_it_Whip_BillMcClintockMashups": {
-        "bg": "#f3e5f5",
-        "border": "#ce93d8"
-      },
-      "pl_Celebration_Bang_Your_Head_BillMcClintockMashups": {
-        "bg": "#f3e5f5",
-        "border": "#ce93d8"
-      },
-      "pl_Jeopardy_Theme_Song_U": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "pl_RefsHuddle_U": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "pl_Terminator_2_Theme_U": {
-        "bg": "#e3f2fd",
-        "border": "#90caf9"
-      },
-      "pl_The_Dark_Knight_Main_Theme_Hans_Zimmer": {
-        "bg": "#e3f2fd",
-        "border": "#90caf9"
-      },
-      "pl_Right_Here__Right_Now_Fatboy_Slim": {
-        "bg": "#e3f2fd",
-        "border": "#90caf9"
-      },
-      "extra_Anthem": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "extra_TBD 1": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "extra_TBD 2": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "extra_TBD 3": {
-        "bg": "#fffde7",
-        "border": "#fff59d"
-      },
-      "pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels": {
-        "bg": "#ffebee",
-        "border": "#ef9a9a"
-      }
-    };
-    const defaultSongsLayoutOrder = [
-      "player_1",
-      "player_2",
-      "player_3",
-      "player_4",
-      "player_5",
-      "player_6",
-      "player_7",
-      "player_8",
-      "player_9",
-      "player_10",
-      "player_11",
-      "player_12",
-      "player_13",
-      "player_15",
-      "player_18",
-      "player_20",
-      "player_25",
-      "player_27",
-      "player_30",
-      "player_31",
-      "extra_Anthem",
-      "extra_TBD 1",
-      "extra_TBD 2",
-      "extra_TBD 3"
-    ];
-    const defaultPlaylistLayoutOrder = [
-      "pl_Hells_Bells__Instrumental__AC_DC",
-      "pl_Sabotage__Instrumental__Beastie_Boys",
-      "pl_Enter_Sandman_Metallica",
-      "pl_Ain_t_Talkin___Bout_Love__Instrumental__Van_Halen",
-      "pl_7_Nation_Teen_Spirit_DJ_BootOX",
-      "pl_Timber_Old_Town_Road_Chrispy_Mashups",
-      "pl_HEY__Gary_Glitter",
-      "pl_Gonna_Make_You_Sweat_C_C_Music_Factory",
-      "pl_Y_all_Ready_for_This__Space_Jam_Theme__U",
-      "pl_It_Takes_Two_Rob_Base___D_J__E_Z_Rock",
-      "pl_Bust_a_Move_FWIW_BillMcClintockMashups",
-      "pl_The_Good__The_Bad_and_The_Ugly_Theme_U",
-      "pl_How_Soon_Is_Now__The_Smiths",
-      "pl_Situation_Yaz",
-      "pl_Still_D_R_E___Instrumental__Dr__Dre",
-      "pl_Rocket_Fuel_ft__De_La_Soul_DJ_Shadow",
-      "pl_Celebration_Bang_Your_Head_BillMcClintockMashups",
-      "pl_Happy_Trails_Roy_Rogers",
-      "pl_Right_Here__Right_Now_Fatboy_Slim",
-      "pl_Jump_into_the_Fire__Karaoke__Harry_Nilsson",
-      "pl_Kill_Bill_Theme_U",
-      "pl_Misirlou__Pulp_Fiction__Dick_Dale",
-      "pl_Lonely_Heart_Let_it_Whip_BillMcClintockMashups",
-      "pl_Bonanza_U",
-      "pl_The_Dark_Knight_Main_Theme_Hans_Zimmer",
-      "pl_Terminator_2_Theme_U",
-      "pl_Jeopardy_Theme_Song_U",
-      "pl_RefsHuddle_U",
-      "pl_Made_for_Lovin__You_Boogie_Wonderland_BillMcClintockMashups",
-      "pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels",
-      "pl_Blockbuster_Night_Part_1__Instrumental__Run_The_Jewels",
-      "pl_Wild_Horses_The_Sundays",
-      "pl_TBD1_U",
-      "pl_TBD2_U",
-      "pl_TBD3_U"
-    ];
-    const defaultSpacersSongs = [];
-    const defaultSpacersPlaylist = [];
+const defaultAdminPinHash = "MTAzMF9sYXgyMDI2";
+const defaultMissingSongs = [2,4,5,7,8,10,12,13,15,25,30];
+const defaultLockedButtons = ["playlist_2","playlist_7","playlist_14","playlist_19","pl_The_Good__The_Bad_and_The_Ugly_Theme_U","pl_Happy_Trails_Roy_Rogers","pl_Timber_Old_Town_Road_Chrispy_Mashups","pl_Bonanza_U","pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels"];
+const defaultCardColors = {
+  "playlist_2": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "playlist_7": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "playlist_14": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "playlist_19": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_Bonanza_U": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_The_Good__The_Bad_and_The_Ugly_Theme_U": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_Happy_Trails_Roy_Rogers": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_Timber_Old_Town_Road_Chrispy_Mashups": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_Jeopardy_Theme_Song_U": {
+    "bg": "#fffde7",
+    "border": "#fff59d"
+  },
+  "pl_RefsHuddle_U": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Terminator_2_Theme_U": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_The_Dark_Knight_Main_Theme_Hans_Zimmer": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Right_Here__Right_Now_Fatboy_Slim": {
+    "bg": "#e3f2fd",
+    "border": "#90caf9"
+  },
+  "extra_Anthem": {
+    "bg": "#fffde7",
+    "border": "#fff59d"
+  },
+  "extra_TBD 1": {
+    "bg": "#fffde7",
+    "border": "#fff59d"
+  },
+  "extra_TBD 2": {
+    "bg": "#fffde7",
+    "border": "#fff59d"
+  },
+  "extra_TBD 3": {
+    "bg": "#fffde7",
+    "border": "#fff59d"
+  },
+  "pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels": {
+    "bg": "#ffebee",
+    "border": "#ef9a9a"
+  },
+  "pl_Redrum_21_Savage": {
+    "bg": "#f3e5f5",
+    "border": "#ce93d8"
+  },
+  "pl_We_Ready_Archie_Eversole": {
+    "bg": "#f3e5f5",
+    "border": "#ce93d8"
+  },
+  "pl_Lose_Yourself_Eminem": {
+    "bg": "#f3e5f5",
+    "border": "#ce93d8"
+  },
+  "pl_Power_Kanye": {
+    "bg": "#f3e5f5",
+    "border": "#ce93d8"
+  },
+  "pl_Not_Like_Us_Kendrick": {
+    "bg": "#f3e5f5",
+    "border": "#ce93d8"
+  },
+  "pl_Enter_Sandman_Metallica": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Ain_t_Talkin___Bout_Love__Instrumental__Van_Halen": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Y_all_Ready_for_This__Space_Jam_Theme__U": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_It_Takes_Two_Rob_Base___D_J__E_Z_Rock": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_How_Soon_Is_Now__The_Smiths": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Situation_Yaz": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Still_D_R_E___Instrumental__Dr__Dre": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Jump_into_the_Fire__Karaoke__Harry_Nilsson": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Kill_Bill_Theme_U": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Misirlou__Pulp_Fiction__Dick_Dale": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Blockbuster_Night_Part_1__Instrumental__Run_The_Jewels": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  },
+  "pl_Wild_Horses_The_Sundays": {
+    "bg": "#f5f5f5",
+    "border": "#e0e0e0"
+  }
+};
+const defaultSongsLayoutOrder = [
+  "player_1",
+  "player_2",
+  "player_3",
+  "player_4",
+  "player_5",
+  "player_6",
+  "player_7",
+  "player_8",
+  "player_9",
+  "player_10",
+  "player_11",
+  "player_12",
+  "player_13",
+  "player_15",
+  "player_18",
+  "player_20",
+  "player_25",
+  "player_27",
+  "player_30",
+  "player_31",
+  "extra_Anthem",
+  "extra_TBD 1",
+  "extra_TBD 2",
+  "extra_TBD 3"
+];
+const defaultPlaylistLayoutOrder = [
+  "pl_Hells_Bells__Instrumental__AC_DC",
+  "pl_Sabotage__Instrumental__Beastie_Boys",
+  "pl_Enter_Sandman_Metallica",
+  "pl_Ain_t_Talkin___Bout_Love__Instrumental__Van_Halen",
+  "pl_Redrum_21_Savage",
+  "pl_Timber_Old_Town_Road_Chrispy_Mashups",
+  "pl_HEY__Gary_Glitter",
+  "pl_Gonna_Make_You_Sweat_C_C_Music_Factory",
+  "pl_Y_all_Ready_for_This__Space_Jam_Theme__U",
+  "pl_It_Takes_Two_Rob_Base___D_J__E_Z_Rock",
+  "pl_We_Ready_Archie_Eversole",
+  "pl_The_Good__The_Bad_and_The_Ugly_Theme_U",
+  "pl_How_Soon_Is_Now__The_Smiths",
+  "pl_Situation_Yaz",
+  "pl_Still_D_R_E___Instrumental__Dr__Dre",
+  "pl_Rocket_Fuel_ft__De_La_Soul_DJ_Shadow",
+  "pl_Lose_Yourself_Eminem",
+  "pl_Happy_Trails_Roy_Rogers",
+  "pl_Right_Here__Right_Now_Fatboy_Slim",
+  "pl_Jump_into_the_Fire__Karaoke__Harry_Nilsson",
+  "pl_Kill_Bill_Theme_U",
+  "pl_Misirlou__Pulp_Fiction__Dick_Dale",
+  "pl_Power_Kanye",
+  "pl_Bonanza_U",
+  "pl_The_Dark_Knight_Main_Theme_Hans_Zimmer",
+  "pl_Terminator_2_Theme_U",
+  "pl_Jeopardy_Theme_Song_U",
+  "pl_RefsHuddle_U",
+  "pl_Not_Like_Us_Kendrick",
+  "pl_Yankee_and_the_Brave__Instrumental__Run_The_Jewels",
+  "pl_Blockbuster_Night_Part_1__Instrumental__Run_The_Jewels",
+  "pl_Wild_Horses_The_Sundays",
+  "pl_Hot_Young_Thug",
+  "pl_Pump_Up_The_Jam_Technotronic",
+  "pl_Crazy_Train_Ozzy"
+];
+const defaultSpacersSongs = [];
+const defaultSpacersPlaylist = [];
 
-    const defaultPlayers = [
-      {
-        "num": 1,
-        "name": "Roshan Royai",
-        "songFile": "01_Roshan_Royai.mp3",
-        "goalFile": "01_Roshan_Royai_Goal.mp3"
-      },
-      {
-        "num": 2,
-        "name": "Hayden Nicholas",
-        "songFile": "02_Hayden_Nicholas.mp3",
-        "goalFile": "02_Hayden_Nicholas_Goal.mp3"
-      },
-      {
-        "num": 3,
-        "name": "Corinne Negrete",
-        "songFile": "03_Corinne_Negrete.mp3",
-        "goalFile": "03_Corinne_Negrete_Goal.mp3"
-      },
-      {
-        "num": 4,
-        "name": "Ava Thompson",
-        "songFile": "04_Ava_Thompson.mp3",
-        "goalFile": "04_Ava_Thompson_Goal.mp3"
-      },
-      {
-        "num": 5,
-        "name": "Ceili Dwyer",
-        "songFile": "05_Ceili_Dwyer.mp3",
-        "goalFile": "05_Ceili_Dwyer_Goal.mp3"
-      },
-      {
-        "num": 6,
-        "name": "Ava Ahern",
-        "songFile": "06_Ava_Ahern.mp3",
-        "goalFile": "06_Ava_Ahern_Goal.mp3"
-      },
-      {
-        "num": 7,
-        "name": "Hazel Toombs",
-        "songFile": "07_Hazel_Toombs.mp3",
-        "goalFile": "07_Hazel_Toombs_Goal.mp3"
-      },
-      {
-        "num": 8,
-        "name": "Beatriz Mark-Constantino",
-        "songFile": "08_Beatriz_Mark-Constantino.mp3",
-        "goalFile": "08_Beatriz_Mark-Constantino_Goal.mp3"
-      },
-      {
-        "num": 9,
-        "name": "Sophia Sanchez",
-        "songFile": "09_Sophia_Sanchez.mp3",
-        "goalFile": "09_Sophia_Sanchez_Goal.mp3"
-      },
-      {
-        "num": 10,
-        "name": "Calyn Foley",
-        "songFile": "10_Calyn_Foley.mp3",
-        "goalFile": "10_Calyn_Foley_Goal.mp3"
-      },
-      {
-        "num": 11,
-        "name": "Marisa Knight",
-        "songFile": "11_Marisa_Knight.mp3",
-        "goalFile": "11_Marisa_Knight_Goal.mp3"
-      },
-      {
-        "num": 12,
-        "name": "Samina Mcleod",
-        "songFile": "12_Samina_Mcleod.mp3",
-        "goalFile": "12_Samina_Mcleod_Goal.mp3"
-      },
-      {
-        "num": 13,
-        "name": "Molly Cotton",
-        "songFile": "13_Molly_Cotton.mp3",
-        "goalFile": "13_Molly_Cotton_Goal.mp3"
-      },
-      {
-        "num": 15,
-        "name": "Sophia Rizzo",
-        "songFile": "15_Sophia_Rizzo.mp3",
-        "goalFile": "15_Sophia_Rizzo_Goal.mp3"
-      },
-      {
-        "num": 18,
-        "name": "Danika Reginato",
-        "songFile": "18_Danika_Reginato.mp3",
-        "goalFile": "18_Danika_Reginato_Goal.mp3"
-      },
-      {
-        "num": 20,
-        "name": "Ava Keane",
-        "songFile": "20_Ava_Keane.mp3",
-        "goalFile": "20_Ava_Keane_Goal.mp3"
-      },
-      {
-        "num": 25,
-        "name": "Isabella Watson",
-        "songFile": "25_Isabella_Watson.mp3",
-        "goalFile": "25_Isabella_Watson_Goal.mp3"
-      },
-      {
-        "num": 27,
-        "name": "Amanda Reed",
-        "songFile": "27_Amanda_Reed.mp3",
-        "goalFile": "27_Amanda_Reed_Goal.mp3"
-      },
-      {
-        "num": 30,
-        "name": "Claire Junge",
-        "songFile": "30_Claire_Junge.mp3",
-        "goalFile": "30_Claire_Junge_Goal.mp3"
-      },
-      {
-        "num": 31,
-        "name": "Ava Reed",
-        "songFile": "31_Ava_Reed.mp3",
-        "goalFile": "31_Ava_Reed_Goal.mp3"
-      }
-    ];
+const defaultPlayers = [
+  {
+    "num": 1,
+    "name": "Roshan Royai",
+    "songFile": "01_Roshan_Royai.mp3",
+    "goalFile": "01_Roshan_Royai_Goal.mp3"
+  },
+  {
+    "num": 2,
+    "name": "Hayden Nicholas",
+    "songFile": "02_Hayden_Nicholas.mp3",
+    "goalFile": "02_Hayden_Nicholas_Goal.mp3"
+  },
+  {
+    "num": 3,
+    "name": "Corinne Negrete",
+    "songFile": "03_Corinne_Negrete.mp3",
+    "goalFile": "03_Corinne_Negrete_Goal.mp3"
+  },
+  {
+    "num": 4,
+    "name": "Ava Thompson",
+    "songFile": "04_Ava_Thompson.mp3",
+    "goalFile": "04_Ava_Thompson_Goal.mp3"
+  },
+  {
+    "num": 5,
+    "name": "Ceili Dwyer",
+    "songFile": "05_Ceili_Dwyer.mp3",
+    "goalFile": "05_Ceili_Dwyer_Goal.mp3"
+  },
+  {
+    "num": 6,
+    "name": "Ava Ahern",
+    "songFile": "06_Ava_Ahern.mp3",
+    "goalFile": "06_Ava_Ahern_Goal.mp3"
+  },
+  {
+    "num": 7,
+    "name": "Hazel Toombs",
+    "songFile": "07_Hazel_Toombs.mp3",
+    "goalFile": "07_Hazel_Toombs_Goal.mp3"
+  },
+  {
+    "num": 8,
+    "name": "Beatriz Mark-Constantino",
+    "songFile": "08_Beatriz_Mark-Constantino.mp3",
+    "goalFile": "08_Beatriz_Mark-Constantino_Goal.mp3"
+  },
+  {
+    "num": 9,
+    "name": "Sophia Sanchez",
+    "songFile": "09_Sophia_Sanchez.mp3",
+    "goalFile": "09_Sophia_Sanchez_Goal.mp3"
+  },
+  {
+    "num": 10,
+    "name": "Calyn Foley",
+    "songFile": "10_Calyn_Foley.mp3",
+    "goalFile": "10_Calyn_Foley_Goal.mp3"
+  },
+  {
+    "num": 11,
+    "name": "Marisa Knight",
+    "songFile": "11_Marisa_Knight.mp3",
+    "goalFile": "11_Marisa_Knight_Goal.mp3"
+  },
+  {
+    "num": 12,
+    "name": "Samina Mcleod",
+    "songFile": "12_Samina_Mcleod.mp3",
+    "goalFile": "12_Samina_Mcleod_Goal.mp3"
+  },
+  {
+    "num": 13,
+    "name": "Molly Cotton",
+    "songFile": "13_Molly_Cotton.mp3",
+    "goalFile": "13_Molly_Cotton_Goal.mp3"
+  },
+  {
+    "num": 15,
+    "name": "Sophia Rizzo",
+    "songFile": "15_Sophia_Rizzo.mp3",
+    "goalFile": "15_Sophia_Rizzo_Goal.mp3"
+  },
+  {
+    "num": 18,
+    "name": "Danika Reginato",
+    "songFile": "18_Danika_Reginato.mp3",
+    "goalFile": "18_Danika_Reginato_Goal.mp3"
+  },
+  {
+    "num": 20,
+    "name": "Ava Keane",
+    "songFile": "20_Ava_Keane.mp3",
+    "goalFile": "20_Ava_Keane_Goal.mp3"
+  },
+  {
+    "num": 25,
+    "name": "Isabella Watson",
+    "songFile": "25_Isabella_Watson.mp3",
+    "goalFile": "25_Isabella_Watson_Goal.mp3"
+  },
+  {
+    "num": 27,
+    "name": "Amanda Reed",
+    "songFile": "27_Amanda_Reed.mp3",
+    "goalFile": "27_Amanda_Reed_Goal.mp3"
+  },
+  {
+    "num": 30,
+    "name": "Claire Junge",
+    "songFile": "30_Claire_Junge.mp3",
+    "goalFile": "30_Claire_Junge_Goal.mp3"
+  },
+  {
+    "num": 31,
+    "name": "Ava Reed",
+    "songFile": "31_Ava_Reed.mp3",
+    "goalFile": "31_Ava_Reed_Goal.mp3"
+  }
+];
 
-    const defaultExtras = [
-      {
-        "key": "Anthem",
-        "labelTop": "Anthem",
-        "labelBottom": "National Anthem",
-        "songFile": "extras/Anthem.mp3",
-        "goalFile": "extras/Anthem_Goal.mp3"
-      },
-      {
-        "key": "TBD 1",
-        "labelTop": "Oh Yeah",
-        "labelBottom": "After Nat'l Anthem",
-        "songFile": "extras/TBD_1.mp3",
-        "goalFile": "extras/TBD_1_Goal.mp3"
-      },
-      {
-        "key": "TBD 2",
-        "labelTop": "Neigh-Gallop",
-        "labelBottom": "Post-Goal",
-        "songFile": "extras/TBD_2.mp3",
-        "goalFile": "extras/TBD_2_Goal.mp3"
-      },
-      {
-        "key": "TBD 3",
-        "labelTop": "Mustang Sally",
-        "labelBottom": "After a Win",
-        "songFile": "extras/TBD_3.mp3",
-        "goalFile": "extras/TBD_3_Goal.mp3"
-      }
-    ];
+const defaultExtras = [
+  {
+    "key": "Anthem",
+    "labelTop": "Anthem",
+    "labelBottom": "National Anthem",
+    "songFile": "extras/Anthem.mp3",
+    "goalFile": "extras/Anthem_Goal.mp3"
+  },
+  {
+    "key": "TBD 1",
+    "labelTop": "Oh Yeah",
+    "labelBottom": "After Nat'l Anthem",
+    "songFile": "extras/TBD_1.mp3",
+    "goalFile": "extras/TBD_1_Goal.mp3"
+  },
+  {
+    "key": "TBD 2",
+    "labelTop": "Neigh-Gallop",
+    "labelBottom": "Post-Goal",
+    "songFile": "extras/TBD_2.mp3",
+    "goalFile": "extras/TBD_2_Goal.mp3"
+  },
+  {
+    "key": "TBD 3",
+    "labelTop": "Mustang Sally",
+    "labelBottom": "After a Win",
+    "songFile": "extras/TBD_3.mp3",
+    "goalFile": "extras/TBD_3_Goal.mp3"
+  }
+];
 
-    const defaultPlaylist = [
-      {
-        "title": "Hells Bells (Instrumental)",
-        "artist": "AC/DC",
-        "file": "ACDC - Hells Bells (Instrumental).mp3"
-      },
-      {
-        "title": "Sabotage (Instrumental)",
-        "artist": "Beastie Boys",
-        "file": "Beastie Boys-Sabotage ( Instrumental ).mp3"
-      },
-      {
-        "title": "Bonanza",
-        "artist": "",
-        "file": "Bonanza.mp3"
-      },
-      {
-        "title": "Gonna Make You Sweat",
-        "artist": "C+C Music Factory",
-        "file": "C&C MF - Gonna Make You Sweat.mp3"
-      },
-      {
-        "title": "Rocket Fuel ft. De La Soul",
-        "artist": "DJ Shadow",
-        "file": "DJ Shadow - Rocket Fuel ft. De La Soul.mp3"
-      },
-      {
-        "title": "Right Here, Right Now",
-        "artist": "Fatboy Slim",
-        "file": "Fatboy Slim - Right Here, Right Now.mp3"
-      },
-      {
-        "title": "The Good, The Bad and The Ugly Theme",
-        "artist": "",
-        "file": "Good Bad Ugly Theme.mp3"
-      },
-      {
-        "title": "Jump into the Fire (Karaoke)",
-        "artist": "Harry Nilsson",
-        "file": "Harry Nilsson  - Jump into the Fire (karaoke).mp3"
-      },
-      {
-        "title": "Jeopardy Theme Song",
-        "artist": "",
-        "file": "Jeopardy Theme Song.mp3"
-      },
-      {
-        "title": "Kill Bill Theme",
-        "artist": "",
-        "file": "Kill Bill Theme.mp3"
-      },
-      {
-        "title": "Enter Sandman",
-        "artist": "Metallica",
-        "file": "Metallica - Enter Sandman.mp3"
-      },
-      {
-        "title": "Misirlou (Pulp Fiction)",
-        "artist": "Dick Dale",
-        "file": "Pulp Fiction - Misirlou.mp3"
-      },
-      {
-        "title": "It Takes Two",
-        "artist": "Rob Base & D.J. E-Z Rock",
-        "file": "Rob Base & D.J. E-Z Rock - It Takes Two.mp3"
-      },
-      {
-        "title": "Happy Trails",
-        "artist": "Roy Rogers",
-        "file": "Roy Rogers -  Happy trails.mp3"
-      },
-      {
-        "title": "Yankee and the Brave (Instrumental)",
-        "artist": "Run The Jewels",
-        "file": "RTJ - yankee and the brave (ep. 4) (Instrumental).mp3"
-      },
-      {
-        "title": "Blockbuster Night Part 1 (Instrumental)",
-        "artist": "Run The Jewels",
-        "file": "Run The Jewels - Blockbuster Night Part 1 (Instrumental).mp3"
-      },
-      {
-        "title": "TBD3",
-        "artist": "",
-        "file": "TBD3.mp3"
-      },
-      {
-        "title": "Still D.R.E. (Instrumental)",
-        "artist": "Dr. Dre",
-        "file": "Still D.R.E. (Instrumental).mp3"
-      },
-      {
-        "title": "Wild Horses",
-        "artist": "The Sundays",
-        "file": "Sundays - Wild Horses.mp4"
-      },
-      {
-        "title": "Terminator 2 Theme",
-        "artist": "",
-        "file": "Terminator 2 Theme.mp3"
-      },
-      {
-        "title": "The Dark Knight Main Theme",
-        "artist": "Hans Zimmer",
-        "file": "The Dark Knight Main Theme - Hans Zimmer.mp3"
-      },
-      {
-        "title": "How Soon Is Now?",
-        "artist": "The Smiths",
-        "file": "The Smiths - How Soon Is Now.mp3"
-      },
-      {
-        "title": "Y'all Ready for This (Space Jam Theme)",
-        "artist": "",
-        "file": "Y'all ready for this - (Space Jam Theme).mp3"
-      },
-      {
-        "title": "Situation",
-        "artist": "Yaz",
-        "file": "Yaz - Situation.mp3"
-      },
-      {
-        "title": "TBD2",
-        "artist": "",
-        "file": "TBD2.mp3"
-      },
-      {
-        "title": "HEY!",
-        "artist": "Gary Glitter",
-        "file": "Gary Glitter - HEY!.mp3"
-      },
-      {
-        "title": "Ain't Talkin' 'Bout Love (Instrumental)",
-        "artist": "Van Halen",
-        "file": "Van Halen - Ain't Talkin' 'Bout Love (Instrumental).mp3"
-      },
-      {
-        "title": "TBD1",
-        "artist": "",
-        "file": "TBD1.mp3"
-      },
-      {
-        "title": "RefsHuddle",
-        "artist": "",
-        "file": "RefsHuddle.mp3"
-      },
-      {
-        "title": "7 Nation Teen Spirit",
-        "artist": "DJ BootOX",
-        "file": "DJ BootOX - 7 Nation Teen Spirit.mp3"
-      },
-      {
-        "title": "Bust a Move FWIW",
-        "artist": "BillMcClintockMashups",
-        "file": "BillMcClintockMashups - Bust a Move FWIW.mp3"
-      },
-      {
-        "title": "Celebration Bang Your Head",
-        "artist": "BillMcClintockMashups",
-        "file": "BillMcClintockMashups - Celebration Bang Your Head.mp3"
-      },
-      {
-        "title": "Lonely Heart Let it Whip",
-        "artist": "BillMcClintockMashups",
-        "file": "BillMcClintockMashups - Lonely Heart Let it Whip.mp3"
-      },
-      {
-        "title": "Made for Lovin' You Boogie Wonderland",
-        "artist": "BillMcClintockMashups",
-        "file": "BillMcClintockMashups - Made for Lovin' You Boogie Wonderland.mp3"
-      },
-      {
-        "title": "Timber Old Town Road",
-        "artist": "Chrispy Mashups",
-        "file": "Chrispy Mashups - Timber Old Town Road.mp3"
-      }
-    ];
-
+const defaultPlaylist = [
+  {
+    "title": "Hells Bells (Instrumental)",
+    "artist": "AC/DC",
+    "file": "ACDC - Hells Bells (Instrumental).mp3"
+  },
+  {
+    "title": "Sabotage (Instrumental)",
+    "artist": "Beastie Boys",
+    "file": "Beastie Boys-Sabotage ( Instrumental ).mp3"
+  }
+];
+,
     /*****************************************************************
      * DYNAMIC DATA MANAGEMENT (Local Storage Merging)
      *****************************************************************/
